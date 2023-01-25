@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Tabs[selectedIndex]),
+      body: Tabs[selectedIndex],
       bottomNavigationBar: SizedBox (
         height: 70,
         child: BottomNavigationBar(
