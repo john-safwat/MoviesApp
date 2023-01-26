@@ -13,8 +13,8 @@
 /// vote_average : 8.6
 /// vote_count : 2504
 
-class Results {
-  Results({
+class Movie {
+  Movie({
       this.adult, 
       this.backdropPath, 
       this.genreIds, 
@@ -30,7 +30,7 @@ class Results {
       this.voteAverage, 
       this.voteCount,});
 
-  Results.fromJson(dynamic json) {
+  Movie.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];

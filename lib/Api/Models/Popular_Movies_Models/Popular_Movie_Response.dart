@@ -24,7 +24,7 @@ class PopularMovieResponse {
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(Movie.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -32,7 +32,7 @@ class PopularMovieResponse {
 
   }
   num? page;
-  List<Results>? results;
+  List<Movie>? results;
   num? totalPages;
   num? totalResults;
   String? status_code;
