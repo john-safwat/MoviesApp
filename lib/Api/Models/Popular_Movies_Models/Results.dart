@@ -45,6 +45,7 @@ class Movie {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    isInWatchList = json['isInWatchList'];
   }
   bool? adult;
   String? backdropPath;
@@ -60,6 +61,7 @@ class Movie {
   bool? video;
   num? voteAverage;
   num? voteCount;
+  bool? isInWatchList = false;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -77,6 +79,7 @@ class Movie {
     map['video'] = video;
     map['vote_average'] = voteAverage;
     map['vote_count'] = voteCount;
+    map['isInWatchList'] = isInWatchList ;
     return map;
   }
 
