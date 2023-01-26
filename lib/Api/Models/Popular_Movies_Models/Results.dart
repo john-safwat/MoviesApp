@@ -28,7 +28,9 @@ class Movie {
       this.title, 
       this.video, 
       this.voteAverage, 
-      this.voteCount,});
+      this.voteCount,
+      this.isInWatchList = false
+  });
 
   Movie.fromJson(dynamic json) {
     adult = json['adult'];
@@ -45,7 +47,6 @@ class Movie {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
-    isInWatchList = json['isInWatchList'];
   }
   bool? adult;
   String? backdropPath;
