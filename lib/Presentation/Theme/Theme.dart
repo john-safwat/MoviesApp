@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class MyTheme {
   static const Black =  Color(0xff121312);
   static const Gray =  Color(0xffC6C6C6);
+  static const SmallGaryText =  Color(0xffB5B4B4);
   static const DarkGray =  Color(0xff343534);
   static const Gold =  Color(0xffFFBB3B);
 
