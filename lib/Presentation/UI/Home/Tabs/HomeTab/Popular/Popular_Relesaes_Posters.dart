@@ -12,7 +12,7 @@ class Popular_Relsases_Posters extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(15),
       color: const Color(0xff282A28),
       child: Column(
         children: [
@@ -27,14 +27,14 @@ class Popular_Relsases_Posters extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 15,),
           Expanded(
               child: ListView.builder(
                 itemBuilder: (context, index) => Container(
                   margin:const EdgeInsets.only(right: 15),
                   child: Poster_widget(
                       movie: movies[index],
-                      widthRatio: 0.23,
+                      widthRatio: 0.265,
                       Bottom_Left_border_Radius: 5,
                       Bottom_Right_border_Radius: 5,
                       Top_Right_border_Radius: 5,

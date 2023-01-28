@@ -52,7 +52,7 @@ class HomeTab extends StatelessWidget {
             ),
             // popular movies
             Container(
-              height: 400,
+              height: 250,
               child: FutureBuilder<PopularMovieResponse>(
                 future: Api_Manager.Get_Popular_Movies(),
                 builder: (context, snapshot) {
