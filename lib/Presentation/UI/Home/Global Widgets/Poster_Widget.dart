@@ -30,12 +30,11 @@ class Poster_widget extends StatelessWidget {
           ),
           child: Image.network('https://image.tmdb.org/t/p/w500${movie.posterPath}' ,
             width:  MediaQuery.of(context).size.width * widthRatio,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
           ),
         ),
         InkWell(
           onTap: (){
-
           },
           child: movie.isInWatchList!?Image.asset('assets/images/selectedbookmark.png'):Image.asset('assets/images/unselectedbookmark.png')
         ),

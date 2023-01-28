@@ -20,7 +20,7 @@ class Top_Rated_Poster_widget extends StatelessWidget {
         children: [
           // poster
           Container(
-            height: MediaQuery.of(context).size.height > 2600 ? 130 :  90,
+            height: MediaQuery.of(context).size.height >= 732 ? 130 :  90,
             child: Poster_widget(
               movie: movie,
               widthRatio: 0.6,

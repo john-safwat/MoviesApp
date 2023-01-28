@@ -5,26 +5,24 @@ import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
 
 class BackDropImageWidget extends StatelessWidget {
   Movie movie;
-  double height ;
-  BackDropImageWidget({required this.movie , required this.height});
+  double height;
+  BackDropImageWidget({required this.movie, required this.height});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery
-          .of(context)
-          .size
-          .height * height,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  'https://image.tmdb.org/t/p/w500${movie.backdropPath}'),
-              fit: BoxFit.cover
-          )
-      ),
-      child: const Center(
-        child: Icon(Icons.play_circle_rounded, size: 60, color: Colors.white,),
-      ),
+    return Stack(
+      children: [
+        Image.network('https://image.tmdb.org/t/p/w500${movie.backdropPath}'),
+        Container(
+          alignment: Alignment.center,
+          height: MediaQuery.of(context).size.width * 0.5,
+          child: const Icon(
+            Icons.play_circle_rounded,
+            color: Colors.white,
+            size: 70,
+          ),
+        )
+      ],
     );
   }
 }

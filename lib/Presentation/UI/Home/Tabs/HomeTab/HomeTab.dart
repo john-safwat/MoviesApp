@@ -10,102 +10,106 @@ import '../../../../../Api/Models/Popular_Movies_Models/Popular_Movie_Response.d
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // popular movies
-          Expanded(
-            flex:5,
-            child: FutureBuilder<PopularMovieResponse>(
-              future: Api_Manager.Get_Popular_Movies(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                        "connection error ${snapshot.hasError.toString()}",
-                        style: const TextStyle(color: Colors.white)),
-                  );
-                }
-                if (snapshot.data?.status_message != null) {
-                  return Center(
-                    child: Text("error ${snapshot.data?.status_message}",
-                        style:const TextStyle(color: Colors.white)),
-                  );
-                } else {
-                  return ListView.builder(
-                    itemBuilder: (context, index) => Popular_Widget(movie: snapshot.data!.results![index]),
-                    itemCount: snapshot.data?.results?.length ?? 0,
-                    scrollDirection: Axis.horizontal,
-                    physics: PageScrollPhysics(),
-                  );
-                }
-              },
+    return SingleChildScrollView(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // popular movies
+            SizedBox(
+              height: 330,
+              child: FutureBuilder<PopularMovieResponse>(
+                future: Api_Manager.Get_Popular_Movies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                          "connection error ${snapshot.hasError.toString()}",
+                          style: const TextStyle(color: Colors.white)),
+                    );
+                  }
+                  if (snapshot.data?.status_message != null) {
+                    return Center(
+                      child: Text("error ${snapshot.data?.status_message}",
+                          style:const TextStyle(color: Colors.white)),
+                    );
+                  } else {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) => Popular_Widget(movie: snapshot.data!.results![index]),
+                        itemCount: snapshot.data?.results?.length ?? 0,
+                        scrollDirection: Axis.horizontal,
+                        physics: PageScrollPhysics(),
+                      ),
+                    );
+                  }
+                },
+              ),
             ),
-          ),
-          // popular movies
-          Expanded(
-            flex: 4,
-            child: FutureBuilder<PopularMovieResponse>(
-              future: Api_Manager.Get_Popular_Movies(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                        "connection error ${snapshot.hasError.toString()}",
-                        style: const TextStyle(color: Colors.white)),
-                  );
-                }
-                if (snapshot.data?.status_message != null) {
-                  return Center(
-                    child: Text("error ${snapshot.data?.status_message}",
-                        style:const TextStyle(color: Colors.white)),
-                  );
-                } else {
-                  return Popular_Relsases_Posters(movies: snapshot.data!.results!);
-                }
-              },
+            // popular movies
+            Container(
+              height: 400,
+              child: FutureBuilder<PopularMovieResponse>(
+                future: Api_Manager.Get_Popular_Movies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                          "connection error ${snapshot.hasError.toString()}",
+                          style: const TextStyle(color: Colors.white)),
+                    );
+                  }
+                  if (snapshot.data?.status_message != null) {
+                    return Center(
+                      child: Text("error ${snapshot.data?.status_message}",
+                          style:const TextStyle(color: Colors.white)),
+                    );
+                  } else {
+                    return Expanded(child: Popular_Relsases_Posters(movies: snapshot.data!.results!));
+                  }
+                },
+              ),
             ),
-          ),
-          // top rated movies
-          Expanded(
-            flex:5,
-            child: FutureBuilder<PopularMovieResponse>(
-              future: Api_Manager.Get_Top_Rated_Movies(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                        "connection error ${snapshot.hasError.toString()}",
-                        style: const TextStyle(color: Colors.white)),
-                  );
-                }
-                if (snapshot.data?.status_message != null) {
-                  return Center(
-                    child: Text("error ${snapshot.data?.status_message}",
-                        style:const TextStyle(color: Colors.white)),
-                  );
-                } else {
-                  return Top_Rated_Widget( movies: snapshot.data!.results!);
-                }
-              },
+            // top rated movies
+            Container(
+              height: 400,
+              child: FutureBuilder<PopularMovieResponse>(
+                future: Api_Manager.Get_Top_Rated_Movies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                          "connection error ${snapshot.hasError.toString()}",
+                          style: const TextStyle(color: Colors.white)),
+                    );
+                  }
+                  if (snapshot.data?.status_message != null) {
+                    return Center(
+                      child: Text("error ${snapshot.data?.status_message}",
+                          style:const TextStyle(color: Colors.white)),
+                    );
+                  } else {
+                    return Expanded(child: Top_Rated_Widget( movies: snapshot.data!.results!));
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+      ),
     );
   }
 }
