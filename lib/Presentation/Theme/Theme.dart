@@ -11,8 +11,12 @@ class MyTheme {
 
   static ThemeData Dark = ThemeData(
     primaryColor: Gold ,
-    canvasColor: Color(0xFF1A1A1A),
+    canvasColor: const Color(0xFF1A1A1A),
     scaffoldBackgroundColor: Black,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xff1D1E1D),
+      centerTitle: true ,
+    ),
     bottomNavigationBarTheme:const BottomNavigationBarThemeData(
       elevation: 5,
         selectedItemColor: Gold,
