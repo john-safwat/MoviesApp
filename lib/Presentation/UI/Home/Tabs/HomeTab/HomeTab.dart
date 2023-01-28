@@ -81,7 +81,7 @@ class HomeTab extends StatelessWidget {
             ),
             // top rated movies
             Container(
-              height: 400,
+              height: 365,
               child: FutureBuilder<PopularMovieResponse>(
                 future: Api_Manager.Get_Top_Rated_Movies(),
                 builder: (context, snapshot) {
@@ -103,7 +103,7 @@ class HomeTab extends StatelessWidget {
                           style:const TextStyle(color: Colors.white)),
                     );
                   } else {
-                    return Expanded(child: Top_Rated_Widget( movies: snapshot.data!.results!));
+                    return Top_Rated_Widget( movies: snapshot.data!.results!);
                   }
                 },
               ),

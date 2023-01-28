@@ -9,8 +9,8 @@ class Top_Rated_Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical:10),
-      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical:20),
+      padding: const EdgeInsets.all(15),
       color: const Color(0xff282A28),
       child: Column(
         children: [
@@ -25,7 +25,7 @@ class Top_Rated_Widget extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 8,),
+          const SizedBox(height: 15,),
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) => Top_Rated_Poster_widget(movie: movies[index]),
