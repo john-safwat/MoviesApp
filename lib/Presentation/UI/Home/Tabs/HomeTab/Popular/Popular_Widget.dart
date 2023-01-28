@@ -14,7 +14,7 @@ class Popular_Widget extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: [
-          BackDropImageWidget(movie: movie , height: 0.28,),
+          BackDropImageWidget(movie: movie,),
           Row(
             children: [
               Container(

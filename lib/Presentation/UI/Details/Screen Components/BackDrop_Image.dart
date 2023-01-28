@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
 
-class BackDropImageWidget extends StatelessWidget {
-  Movie movie;
-  BackDropImageWidget({required this.movie});
+import '../../../../Api/Models/Movie_Details_Model/Movie_Details_Response.dart';
+
+class BackDropImage extends StatelessWidget {
+  MovieDetailsResponse movie;
+  BackDropImage({required this.movie});
 
   @override
   Widget build(BuildContext context) {
