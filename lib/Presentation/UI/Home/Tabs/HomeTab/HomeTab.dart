@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Popular/Popular_Movie_View_Model.dart';
-
+import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/Popular/Popular_Movie_Widget.dart';
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,9 +9,9 @@ class HomeTab extends StatelessWidget {
             flex: 6,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.4),
+                color: Colors.red.withOpacity(1),
               ),
-              child: Popular_Movies(),
+              child: Popular_Movies_Widget(),
             )
         ),
         const SizedBox(
@@ -22,7 +21,7 @@ class HomeTab extends StatelessWidget {
             flex: 4,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.4),
+                color: Colors.green.withOpacity(1),
               ),
             )
         ),
@@ -30,7 +29,7 @@ class HomeTab extends StatelessWidget {
             flex: 6,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.4),
+                color: Colors.blue.withOpacity(1),
               ),
             )
         ),
