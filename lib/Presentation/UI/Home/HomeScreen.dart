@@ -12,25 +12,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget> Tabs = [HomeTab() , SearchTab() , BrowseTab() , WatchListTab()];
+  List<Widget> Tabs = [HomeTab(), SearchTab(), BrowseTab(), WatchListTab()];
 
-  int selectedIndex =  0 ;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Tabs[selectedIndex],
-      bottomNavigationBar: SizedBox (
+      backgroundColor: Colors.transparent,
+      body: Tabs[selectedIndex],
+      bottomNavigationBar: SizedBox(
         child: BottomNavigationBar(
-          onTap: (index){
+          onTap: (index) {
             setState(() {
-              selectedIndex = index ;
+              selectedIndex = index;
             });
           },
           currentIndex: selectedIndex,
-          items:const [
+          items: const [
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/home.png'),),
+              icon: ImageIcon(
+                AssetImage('assets/images/home.png'),
+              ),
               label: "HOME",
             ),
             BottomNavigationBarItem(

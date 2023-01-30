@@ -13,7 +13,7 @@ class Api_Constants {
 }
 
 class Api_Manager {
-  static Future<PopularMovieResponse> Get_Popular_Movies () async {
+  Future<PopularMovieResponse> Get_Popular_Movies () async {
     Uri url = Uri.https(
       Api_Constants.BaseUrl ,
       Api_Constants.Popular_Movies ,
@@ -26,7 +26,7 @@ class Api_Manager {
     return PopularMovieResponse.fromJson(jsonDecode(response.body));
   }
 
-  static Future<PopularMovieResponse> Get_Top_Rated_Movies () async {
+  Future<PopularMovieResponse> Get_Top_Rated_Movies () async {
     Uri url = Uri.https(
       Api_Constants.BaseUrl,
       Api_Constants.Top_Rated_Movies,
@@ -39,7 +39,7 @@ class Api_Manager {
     return PopularMovieResponse.fromJson(jsonDecode(response.body));
   }
 
-  static Future<MovieDetailsResponse> Get_Movie_Details(String id)async{
+  Future<MovieDetailsResponse> Get_Movie_Details(String id)async{
     Uri url = Uri.https(
         Api_Constants.BaseUrl,
         "/3/movie/${id}",

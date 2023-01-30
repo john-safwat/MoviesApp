@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class MyTheme {
   static const Black =  Color(0xff121312);
-  static const Gray =  Color(0xffC6C6C6);
+  static const Gray =  Color(0xff282A28);
   static const SmallGaryText =  Color(0xffB5B4B4);
   static const DarkGray =  Color(0xff343534);
   static const Gold =  Color(0xffFFBB3B);
@@ -28,9 +28,9 @@ class MyTheme {
         fontWeight: FontWeight.bold,
         fontSize: 12
       ),
-      unselectedItemColor: Gray,
+      unselectedItemColor: SmallGaryText,
       unselectedIconTheme: IconThemeData(
-          color: Gray ,
+          color: SmallGaryText ,
           size:40
       ),
       unselectedLabelStyle: TextStyle(

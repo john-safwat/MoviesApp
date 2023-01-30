@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
-import 'package:movies/Presentation/UI/Details/Details_Screeen.dart';
 import 'package:movies/Presentation/UI/Home/HomeScreen.dart';
 
 void main () {
@@ -15,7 +14,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName :(_) => HomeScreen(),
-        DetailsScreen.routeName :(_) => DetailsScreen(),
       },
       initialRoute: HomeScreen.routeName,
       theme: MyTheme.Dark,

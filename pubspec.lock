@@ -203,6 +203,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -307,6 +315,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.5"
   rxdart:
     dependency: transitive
     description:
@@ -332,18 +348,18 @@ packages:
     dependency: transitive
     description:
       name: sqflite
-      sha256: "067ab48dbc66bae05e18073a604443baa35957101bd3905b94f65e764c6d0688"
+      sha256: "78324387dc81df14f78df06019175a86a2ee0437624166c382e145d0a7fd9a4f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.3"
+    version: "2.2.4+1"
   sqflite_common:
     dependency: transitive
     description:
       name: sqflite_common
-      sha256: b2ed22d1d62c944ec0dac5cc687ae99cb3331c3ebe146d726ed24704634b5ccd
+      sha256: bfd6973aaeeb93475bc0d875ac9aefddf7965ef22ce09790eb963992ffc5183f
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.2+2"
   stack_trace:
     dependency: transitive
     description:
