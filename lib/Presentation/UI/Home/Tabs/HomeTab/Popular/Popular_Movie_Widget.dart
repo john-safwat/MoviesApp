@@ -24,12 +24,7 @@ class Popular_Movies_Widget extends StatelessWidget {
             child: Text(snapshot.hasError.toString()),
           );
         }else{
-          return ListView.builder(
-            itemBuilder: (context, index) => Popular_Movies(),
-            itemCount: snapshot.data!.results!.length,
-            scrollDirection: Axis.horizontal,
-            physics:const PageScrollPhysics(),
-          );
+          return Popular_Movies(Movies: snapshot.data!.results!);
         }
       },
     );
