@@ -14,12 +14,11 @@ class DetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(movie.title!),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Column(
           children: [
-            Movie_Details_Widget(movieID: movie.id.toString())
+            Expanded(flex: 3, child: Movie_Details_Widget(movieID: movie.id.toString())),
+            Expanded(flex: 1, child: Container(color: Colors.red,))
           ],
-        ),
       ),
     );
   }
