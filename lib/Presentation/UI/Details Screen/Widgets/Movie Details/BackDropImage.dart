@@ -12,6 +12,8 @@ class BackDropImage extends StatelessWidget {
         Image.network(
           image,
           width: double.infinity,
+          height: MediaQuery.of(context).size.height *0.23,
+          fit: BoxFit.cover,
         ),
         const Icon(
           Icons.play_circle_fill_rounded,

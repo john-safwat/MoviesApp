@@ -51,4 +51,18 @@ class Api_Manager {
     var response = await http.get(url);
     return MovieDetailsResponse.fromJson(jsonDecode(response.body));
   }
+
+  Future<PopularMovieResponse> Get_Similar_Movies (String id) async {
+    Uri url = Uri.https(
+        Api_Constants.BaseUrl ,
+        '/3/movie/${id}/similar',
+        {
+          'api_key' : Api_Constants.Api_key ,
+          'language' : 'en-US',
+        }
+    );
+    var response = await http.get(url);
+    return PopularMovieResponse.fromJson(jsonDecode(response.body));
+  }
 }
+
