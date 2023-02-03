@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Api/Models/Categories_Models/Genres.dart';
+import 'package:movies/Presentation/UI/GlobalWidgets/Display_WIdget.dart';
 
 import '../../../Api/ApiManager/Api_Manager.dart';
 import '../../Theme/Theme.dart';
@@ -51,82 +52,7 @@ class ListOfMovies extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.separated(
-                      itemBuilder: (context, index) => InkWell(
-                        onTap: (){
-                          Navigator.pushNamed(context, DetailsScreen.routeName , arguments: snapshot.data!.results![index]);
-                        },
-                        child: Container(
-                          height: 100,
-                          margin:const EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: snapshot.data!.results![index].backdropPath == null ?
-                                Image.asset('assets/images/gallery.png'):
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.network(
-                                    'https://image.tmdb.org/t/p/w500${snapshot.data!.results![index].backdropPath}',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 4,
-                                  child:Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                snapshot.data!.results![index].title!,
-                                                style:const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                softWrap: true,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                snapshot.data!.results![index].releaseDate == null? "UnKnown Release Date":snapshot.data!.results![index].releaseDate!,
-                                                style:const TextStyle(color: MyTheme.SmallGaryText,),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                snapshot.data!.results![index].overview!,
-                                                style:const TextStyle(color: MyTheme.SmallGaryText,),
-                                                softWrap: true,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-
-                                      ],
-                                    ),
-                                  )
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                      itemBuilder: (context, index) => Display_Widget(movie: snapshot.data!.results![index]),
                       separatorBuilder: (context, index) => Container(
                         margin: const EdgeInsets.all(15),
                         height: 1,

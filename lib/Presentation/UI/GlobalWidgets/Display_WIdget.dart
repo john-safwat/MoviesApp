@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 
-import '../../../Details Screen/Details_Screen.dart';
+import '../Details Screen/Details_Screen.dart';
 
-class Search_Display_Widget extends StatelessWidget {
+class Display_Widget extends StatelessWidget {
 
   Movie movie;
-  Search_Display_Widget({required this.movie});
+  Display_Widget({required this.movie});
 
   @override
   Widget build(BuildContext context) {

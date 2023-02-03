@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Api/ApiManager/Api_Manager.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/SearchTab/Search_Display_WIdget.dart';
+import 'package:movies/Presentation/UI/GlobalWidgets/Display_WIdget.dart';
 
 import '../../../../../Api/Models/Popular_Movies_Models/Results.dart';
 
@@ -72,7 +72,7 @@ class _SearchTabState extends State<SearchTab> {
             child: Movies.isEmpty ? Center(
               child: Image.asset('assets/images/Empty.png'),
             ):ListView.separated(
-              itemBuilder: (context, index) => Search_Display_Widget(movie: Movies[index],),
+              itemBuilder: (context, index) => Display_Widget(movie: Movies[index],),
               itemCount: Movies.length,
               separatorBuilder: (context, index) => Container(
                 margin: const EdgeInsets.all(15),

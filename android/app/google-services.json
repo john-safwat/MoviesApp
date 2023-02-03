@@ -29,6 +29,13 @@
             {
               "client_id": "6339132216-1li4flh4qeb06d5qsndg9nbclraua4oh.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "6339132216-n1anv5embh0v2iiqqu669e7t9dkqomt3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.movies"
+              }
             }
           ]
         }

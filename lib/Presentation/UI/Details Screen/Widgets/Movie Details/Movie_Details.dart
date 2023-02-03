@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Api/Models/Movie_Details_Model/Movie_Details_Response.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
-import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Movie%20Details/BackDropImage.dart';
+import 'package:movies/Presentation/UI/GlobalWidgets/BackDropImage.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Movie%20Details/DetailsPosterImage.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/Global%20Widgets/BackDrob_Image.dart';
 
 class Movie_Details extends StatelessWidget {
   MovieDetailsResponse movie;

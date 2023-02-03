@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/Global%20Widgets/Poster_Image.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/Top%20Rated/Top_Rated_Poster.dart';
+import 'package:movies/Presentation/UI/GlobalWidgets/Poster_Image.dart';
+import 'package:movies/Presentation/UI/GlobalWidgets/Detailed_Poster.dart';
 import '../../../../../../Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../../../../FireBase/MyDataBase.dart';
 
-class Top_Rated extends StatelessWidget {
+class Top_Rated extends StatefulWidget {
   List<Movie> Movies;
   Top_Rated({required this.Movies});
 
   @override
+  State<Top_Rated> createState() => _Top_RatedState();
+}
+
+class _Top_RatedState extends State<Top_Rated> {
+  bool isnotCompared = true ;
+
+  @override
   Widget build(BuildContext context) {
+    if (isnotCompared){
+      Compare_With_FireStore();
+    }
     var mediaQuery = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(
@@ -31,13 +42,27 @@ class Top_Rated extends StatelessWidget {
           const SizedBox(height: 10,),
           Expanded(
               child:ListView.builder(
-                itemBuilder: (context, index) => Top_Rated_Poster(movie: Movies[index]),
-                itemCount: Movies.length,
+                itemBuilder: (context, index) => Detailed_Poster(movie: widget.Movies[index]),
+                itemCount: widget.Movies.length,
                 scrollDirection: Axis.horizontal,
               ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> Compare_With_FireStore()async{
+    var WatchList = await MyDataBase.getMoviesToCompare();
+    for(int i = 0 ; i<widget.Movies.length ;i++){
+      for(int j=0;j<WatchList.length ; j++){
+        if(widget.Movies[i].id.toString() == WatchList[j].id.toString()){
+          widget.Movies[i].isInWatchList = true;
+          widget.Movies[i].DataBaseID = WatchList[j].DataBaseID;
+        }
+      }
+    }
+    isnotCompared = false;
+    setState(() {});
   }
 }

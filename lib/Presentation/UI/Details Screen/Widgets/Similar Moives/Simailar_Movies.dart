@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Similar%20Moives/Similar_Movies_Poster.dart';
-
 import '../../../../../Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../GlobalWidgets/Detailed_Poster.dart';
 
 class Similar_Movies extends StatelessWidget {
   List<Movie> Movies;
@@ -31,7 +30,7 @@ class Similar_Movies extends StatelessWidget {
           const SizedBox(height: 10,),
           Expanded(
             child:ListView.builder(
-              itemBuilder: (context, index) => Similar_Movie_Poster(movie: Movies[index]),
+              itemBuilder: (context, index) => Detailed_Poster(movie: Movies[index]),
               itemCount: Movies.length,
               scrollDirection: Axis.horizontal,
             ),

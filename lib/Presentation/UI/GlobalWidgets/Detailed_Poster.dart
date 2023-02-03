@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
+import 'package:movies/Presentation/Theme/Theme.dart';
+import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
+import 'package:movies/Presentation/UI/GlobalWidgets/Poster_Image.dart';
 
-import '../../../../Theme/Theme.dart';
-import '../../Details_Screen.dart';
+import '../../../FireBase/MyDataBase.dart';
 
-class Similar_Movie_Poster extends StatelessWidget {
+class Detailed_Poster extends StatefulWidget {
   Movie movie;
-  Similar_Movie_Poster({required this.movie});
+  Detailed_Poster({required this.movie});
 
+  @override
+  State<Detailed_Poster> createState() => _Detailed_PosterState();
+}
+
+class _Detailed_PosterState extends State<Detailed_Poster> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, DetailsScreen.routeName , arguments: movie);
+        Navigator.pushNamed(context, DetailsScreen.routeName , arguments: widget.movie);
       },
       child: Stack(
         alignment: Alignment.topLeft,
@@ -38,7 +45,7 @@ class Similar_Movie_Poster extends StatelessWidget {
                       bottomRight: Radius.circular(0),
                     ),
                     child: Image.network(
-                      'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                      'https://image.tmdb.org/t/p/w500${widget.movie.posterPath}',
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,
@@ -56,7 +63,7 @@ class Similar_Movie_Poster extends StatelessWidget {
                     ),
                     const SizedBox(width: 5,),
                     Text(
-                      movie.voteAverage!.toString(),
+                      widget.movie.voteAverage!.toString(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -70,7 +77,7 @@ class Similar_Movie_Poster extends StatelessWidget {
                     const SizedBox(width: 5,),
                     Expanded(
                       child: Text(
-                        movie.title!.toString(),
+                        widget.movie.title!.toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -88,7 +95,7 @@ class Similar_Movie_Poster extends StatelessWidget {
                     const SizedBox(width: 5,),
                     Expanded(
                       child: Text(
-                        movie.releaseDate!.toString(),
+                        widget.movie.releaseDate!.toString(),
                         style: const TextStyle(
                           color: MyTheme.SmallGaryText,
                           fontSize: 12,
@@ -104,9 +111,22 @@ class Similar_Movie_Poster extends StatelessWidget {
               ],
             ),
           ),
-          Image.asset( movie.isInWatchList! ?
-          "assets/images/selectedbookmark.png" :
-          "assets/images/unselectedbookmark.png"
+          InkWell(
+            onTap: ()async {
+              if(widget.movie.isInWatchList == false){
+                widget.movie.isInWatchList = true;
+                await MyDataBase.insertMovieData(widget.movie);
+                setState(() {});
+              }else {
+                widget.movie.isInWatchList = false;
+                await MyDataBase.deletemovie(widget.movie.DataBaseID!);
+                setState(() {});
+              }
+            },
+            child: Image.asset( widget.movie.isInWatchList! ?
+              "assets/images/selectedbookmark.png" :
+              "assets/images/unselectedbookmark.png"
+            ),
           )
         ],
       ),
