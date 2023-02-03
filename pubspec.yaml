@@ -38,6 +38,7 @@ dependencies:
   cached_network_image: ^3.2.3
   image_network: ^2.5.1
   provider: ^6.0.5
+  firebase_core: ^2.4.1
 
 dev_dependencies:
   flutter_test:

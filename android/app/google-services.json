@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "6339132216",
+    "project_id": "moviesapp-efeda",
+    "storage_bucket": "moviesapp-efeda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6339132216:android:aef8676aec2063385edfcd",
+        "android_client_info": {
+          "package_name": "com.example.movies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6339132216-1li4flh4qeb06d5qsndg9nbclraua4oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz1CLpHuHlrkYMCPuq4BXfjOQYhdtnqR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6339132216-1li4flh4qeb06d5qsndg9nbclraua4oh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
