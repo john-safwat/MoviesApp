@@ -19,7 +19,6 @@ class _Popular_MoviesState extends State<Popular_Movies> {
 
   @override
   Widget build(BuildContext context) {
-    bool isnotCompared = true ;
     var mediaQuery = MediaQuery.of(context).size;
     if (isnotCompared){
       Compare_With_FireStore();

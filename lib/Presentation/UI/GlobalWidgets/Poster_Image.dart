@@ -50,32 +50,35 @@ class _Poster_ImageState extends State<Poster_Image> {
           InkWell(
             onTap: (){
               if(widget.movie.isInWatchList! ){
-                widget.movie.isInWatchList = false;
                 DialogUtils.showMessage(
-                  message: 'delete?',
+                  message: 'Do You Want to Delete ?',
                   context: context,
                   posActiontitle: 'ok',
                   posAction: () async{
-                    print(widget.movie.DataBaseID);
+                    widget.movie.isInWatchList = false;
                     DialogUtils.showDialogeMessage(Message: 'deleting....', context: context);
                     await MyDataBase.deletemovie(widget.movie.DataBaseID);
                     DialogUtils.hideDialogMessage(context: context);
                     setState(() {});
                   },
+                  nigActiontitle: "Cancle",
+                  nigAction: (){}
                 );
 
               }else {
-                widget.movie.isInWatchList = true;
                 DialogUtils.showMessage(
-                  message: 'add?',
+                  message: 'Do You Want to Add ?',
                   context: context,
                   posActiontitle: 'ok',
                   posAction: () async{
+                    widget.movie.isInWatchList = true;
                     DialogUtils.showDialogeMessage(Message: 'adding....', context: context);
                     await MyDataBase.insertMovieData(widget.movie);
                     DialogUtils.hideDialogMessage(context: context);
                     setState(() {});
                   },
+                  nigActiontitle: "Cancle",
+                  nigAction: (){}
                 );
               }
             },

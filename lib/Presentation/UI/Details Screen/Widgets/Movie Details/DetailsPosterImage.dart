@@ -20,10 +20,6 @@ class DetailsPosterImage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.25,
           ),
         ),
-        Image.asset( false ?
-        "assets/images/selectedbookmark.png" :
-        "assets/images/unselectedbookmark.png"
-        )
       ],
     );
   }

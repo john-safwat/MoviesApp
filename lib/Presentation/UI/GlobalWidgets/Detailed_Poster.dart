@@ -5,6 +5,7 @@ import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/Poster_Image.dart';
 
 import '../../../FireBase/MyDataBase.dart';
+import '../utils/Dialogs_utils_class.dart';
 
 class Detailed_Poster extends StatefulWidget {
   Movie movie;
@@ -112,15 +113,38 @@ class _Detailed_PosterState extends State<Detailed_Poster> {
             ),
           ),
           InkWell(
-            onTap: ()async {
-              if(widget.movie.isInWatchList == false){
-                widget.movie.isInWatchList = true;
-                await MyDataBase.insertMovieData(widget.movie);
-                setState(() {});
+            onTap: (){
+              if(widget.movie.isInWatchList! ){
+                DialogUtils.showMessage(
+                    message: 'Do You Want to Delete ?',
+                    context: context,
+                    posActiontitle: 'ok',
+                    posAction: () async{
+                      widget.movie.isInWatchList = false;
+                      DialogUtils.showDialogeMessage(Message: 'deleting....', context: context);
+                      await MyDataBase.deletemovie(widget.movie.DataBaseID);
+                      DialogUtils.hideDialogMessage(context: context);
+                      setState(() {});
+                    },
+                    nigActiontitle: "Cancle",
+                    nigAction: (){}
+                );
+
               }else {
-                widget.movie.isInWatchList = false;
-                await MyDataBase.deletemovie(widget.movie.DataBaseID!);
-                setState(() {});
+                DialogUtils.showMessage(
+                    message: 'Do You Want to Add ?',
+                    context: context,
+                    posActiontitle: 'ok',
+                    posAction: () async{
+                      widget.movie.isInWatchList = true;
+                      DialogUtils.showDialogeMessage(Message: 'adding....', context: context);
+                      await MyDataBase.insertMovieData(widget.movie);
+                      DialogUtils.hideDialogMessage(context: context);
+                      setState(() {});
+                    },
+                    nigActiontitle: "Cancle",
+                    nigAction: (){}
+                );
               }
             },
             child: Image.asset( widget.movie.isInWatchList! ?

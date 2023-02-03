@@ -22,7 +22,9 @@ class WatchListTab extends StatelessWidget {
         return Column(
           children: [
             Expanded(
-              child: ListView.separated(
+              child: movies!.isEmpty ? Center(
+                child: Image.asset('assets/images/Empty.png'),
+              ):ListView.separated(
                   itemBuilder: (context, index) => Display_Widget(movie: movies[index]),
                   separatorBuilder: (context, index) => Container(
                     margin: const EdgeInsets.all(15),
@@ -30,7 +32,7 @@ class WatchListTab extends StatelessWidget {
                     width: double.infinity,
                     color: MyTheme.SmallGaryText,
                   ),
-                  itemCount: movies!.length
+                  itemCount: movies.length
               ),
             ),
           ],
