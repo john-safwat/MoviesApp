@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Similar%20Moives/Simailar_Movies.dart';
-
 import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
-import '../../../../Theme/Theme.dart';
+import 'Movie_Details.dart';
 
-class Similar_Movies_Widget extends StatelessWidget {
+
+class Movie_Details_Widget extends StatelessWidget {
   Api_Manager Api = Api_Manager();
-  String id ;
-  Similar_Movies_Widget({required this.id});
-
+  String movieID ;
+  Movie_Details_Widget({required this.movieID});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: MyTheme.Gray,
-      child: FutureBuilder(
-        future: Api.Get_Similar_Movies(id),
+    return FutureBuilder(
+        future: Api.Get_Movie_Details(movieID),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(
@@ -31,10 +27,9 @@ class Similar_Movies_Widget extends StatelessWidget {
               child: Text(snapshot.hasError.toString()),
             );
           }else{
-            return Similar_Movies(Movies: snapshot.data!.results!);
+            return Movie_Details(movie: snapshot.data!,);
           }
         },
-      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
-import '../../../GlobalWidgets/Detailed_Poster.dart';
+import '../../GlobalWidgets/Detailed_Poster.dart';
 
 class Similar_Movies extends StatelessWidget {
   List<Movie> Movies;
@@ -20,7 +20,7 @@ class Similar_Movies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text(
-            "Top Rated",
+            "More Like That",
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
