@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/Models/Categories_Models/Genres.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/Display_WIdget.dart';
-
-import '../../../Api/ApiManager/Api_Manager.dart';
+import '../../../DataBase/Api/ApiManager/Api_Manager.dart';
+import '../../../DataBase/Api/Models/Categories_Models/Genres.dart';
 import '../../Theme/Theme.dart';
-import '../Details Screen/Details_Screen.dart';
 
 class ListOfMovies extends StatelessWidget {
   static const String routeName = 'List of Movies';

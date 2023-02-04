@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/BackDropImage.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/Poster_Image.dart';
 
-import '../../../../../../FireBase/MyDataBase.dart';
+import '../../../../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../../../../DataBase/FireBase/MyDataBase.dart';
+
 
 class Popular_Movies extends StatefulWidget {
   List<Movie> Movies;

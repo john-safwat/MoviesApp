@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/FireBase/MyDataBase.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/Display_WIdget.dart';
 
+import '../../../../../DataBase/FireBase/MyDataBase.dart';
 import '../../../../Theme/Theme.dart';
-import '../../../Details Screen/Details_Screen.dart';
 
 class WatchListTab extends StatelessWidget {
 

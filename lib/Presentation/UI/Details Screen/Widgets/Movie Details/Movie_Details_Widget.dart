@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Movie%20Details/Movie_Details.dart';
 
-import '../../../../../Api/ApiManager/Api_Manager.dart';
+import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
+
 
 class Movie_Details_Widget extends StatelessWidget {
   Api_Manager Api = Api_Manager();

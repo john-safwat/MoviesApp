@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/ApiManager/Api_Manager.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/Display_WIdget.dart';
 
-import '../../../../../Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
+import '../../../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
+
 
 class SearchTab extends StatefulWidget {
   @override

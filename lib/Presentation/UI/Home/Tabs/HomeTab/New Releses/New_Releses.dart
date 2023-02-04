@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/UI/GlobalWidgets/Poster_Image.dart';
-import '../../../../../../Api/Models/Popular_Movies_Models/Results.dart';
-import '../../../../../../FireBase/MyDataBase.dart';
+
+import '../../../../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../../../../DataBase/FireBase/MyDataBase.dart';
 
 class New_Releses extends StatefulWidget {
   List<Movie> Movies;

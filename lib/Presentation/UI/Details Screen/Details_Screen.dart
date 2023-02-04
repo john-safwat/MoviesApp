@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Movie%20Details/Movie_Details_Widget.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Similar%20Moives/Similar_Movies_Widget.dart';
 
-import '../../../Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const String routeName = 'Details Screen';

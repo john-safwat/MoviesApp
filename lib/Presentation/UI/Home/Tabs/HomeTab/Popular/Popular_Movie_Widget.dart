@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/ApiManager/Api_Manager.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/Popular/Popular_Movies.dart';
+
+import '../../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 
 class Popular_Movies_Widget extends StatelessWidget {
   Api_Manager Api = Api_Manager();

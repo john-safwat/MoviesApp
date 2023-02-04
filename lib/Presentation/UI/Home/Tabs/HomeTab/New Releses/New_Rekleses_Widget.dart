@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
-import 'package:movies/FireBase/MyDataBase.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/New%20Releses/New_Releses.dart';
-import '../../../../../../Api/ApiManager/Api_Manager.dart';
+
+import '../../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 
 class New_Releses_Widget extends StatelessWidget {
   Api_Manager Api = Api_Manager();

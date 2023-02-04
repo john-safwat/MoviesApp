@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Widgets/Similar%20Moives/Simailar_Movies.dart';
 
-import '../../../../../Api/ApiManager/Api_Manager.dart';
+import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 import '../../../../Theme/Theme.dart';
 
 class Similar_Movies_Widget extends StatelessWidget {

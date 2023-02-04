@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 
+import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
 import '../Details Screen/Details_Screen.dart';
 
 class Display_Widget extends StatelessWidget {

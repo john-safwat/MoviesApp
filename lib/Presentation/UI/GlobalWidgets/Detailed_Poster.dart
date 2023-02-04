@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
-import 'package:movies/Presentation/UI/GlobalWidgets/Poster_Image.dart';
-
-import '../../../FireBase/MyDataBase.dart';
+import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../DataBase/FireBase/MyDataBase.dart';
 import '../utils/Dialogs_utils_class.dart';
 
 class Detailed_Poster extends StatefulWidget {

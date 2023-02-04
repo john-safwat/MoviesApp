@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
-import 'package:movies/FireBase/MyDataBase.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
 import 'package:movies/Presentation/UI/utils/Dialogs_utils_class.dart';
+
+import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
+import '../../../DataBase/FireBase/MyDataBase.dart';
 
 class Poster_Image extends StatefulWidget {
   Movie movie ;

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movies/Api/Models/Popular_Movies_Models/Popular_Movie_Response.dart';
-import 'package:movies/Api/Models/Categories_Models/Categorie.dart';
+import '../Models/Categories_Models/Categorie.dart';
 import '../Models/Movie_Details_Model/Movie_Details_Response.dart';
+import '../Models/Popular_Movies_Models/Popular_Movie_Response.dart';
 
 class Api_Constants {
   static const String Api_key = 'b25aa4a5a9acd36eb000e5df6c32a270' ;

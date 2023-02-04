@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Api/ApiManager/Api_Manager.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
+import '../../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 import 'Top_Rated.dart';
 
 class Top_Rated_Widget extends StatelessWidget {

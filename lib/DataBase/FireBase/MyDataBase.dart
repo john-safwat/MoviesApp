@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movies/Api/Models/Popular_Movies_Models/Results.dart';
+import '../Api/Models/Popular_Movies_Models/Results.dart';
 
 
 class MyDataBase {
