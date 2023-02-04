@@ -27,6 +27,7 @@ class _Popular_MoviesState extends State<Popular_Movies> {
     return ListView.builder(
       itemBuilder: (context, index) => Container(
         width: MediaQuery.of(context).size.width,
+
         child: Stack(
           children: [
             BackDropImage(image: 'https://image.tmdb.org/t/p/w500${widget.Movies[index].backdropPath}',),
@@ -37,7 +38,7 @@ class _Popular_MoviesState extends State<Popular_Movies> {
                 children: [
                   Poster_Image(
                       movie: widget.Movies[index],
-                      height: mediaQuery.height * 0.24,
+                      height: mediaQuery.height * 0.26,
                       top_Right: 5,
                       top_Left: 5,
                       bottom_Right: 5,

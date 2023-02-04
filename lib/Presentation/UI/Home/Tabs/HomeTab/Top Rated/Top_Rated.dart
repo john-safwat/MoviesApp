@@ -21,7 +21,8 @@ class _Top_RatedState extends State<Top_Rated> {
       Compare_With_FireStore();
     }
     var mediaQuery = MediaQuery.of(context).size;
-    return Padding(
+    return Container(
+      height: 280,
       padding: const EdgeInsets.only(
           top: 15,
           left: 15,

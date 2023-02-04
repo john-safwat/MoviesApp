@@ -25,7 +25,7 @@ class _Detailed_PosterState extends State<Detailed_Poster> {
         alignment: Alignment.topLeft,
         children: [
           Container(
-            width: 100,
+            width: 120,
             decoration: BoxDecoration(
                 color: MyTheme.DarkGray,
                 borderRadius: BorderRadius.circular(5)
@@ -47,7 +47,7 @@ class _Detailed_PosterState extends State<Detailed_Poster> {
                       'https://image.tmdb.org/t/p/w500${widget.movie.posterPath}',
                       width: double.infinity,
                       height: double.infinity,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ),

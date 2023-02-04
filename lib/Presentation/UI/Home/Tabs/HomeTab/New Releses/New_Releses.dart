@@ -20,7 +20,8 @@ class _New_RelesesState extends State<New_Releses> {
       Compare_With_FireStore();
     }
     var mediaQuery = MediaQuery.of(context).size;
-    return Padding(
+    return Container(
+      height: 220,
       padding: const EdgeInsets.only(
         top: 15,
         left: 15,
@@ -45,7 +46,7 @@ class _New_RelesesState extends State<New_Releses> {
                 margin:const EdgeInsets.only(right: 15),
                 child: Poster_Image(
                     movie: widget.Movies[index],
-                    height: mediaQuery.height,
+                    height: mediaQuery.height ,
                     top_Right: 5,
                     top_Left: 5,
                     bottom_Right: 5,

@@ -7,24 +7,21 @@ import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/Top%20Rated/Top_Rated_W
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 6,
-          child: Popular_Movies_Widget(),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Expanded(
-          flex: 4,
-          child: New_Releses_Widget(),
-        ),
-        Expanded(
-          flex: 6,
-          child: Top_Rated_Widget(),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height* 0.33,
+            child: Popular_Movies_Widget(),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          New_Releses_Widget(),
+          Top_Rated_Widget(),
+        ],
+      ),
     );
   }
 }
+
