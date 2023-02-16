@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/BrowseTab/BrowseTab.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTab.dart';
+import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTabView.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/SearchTab/SearchTab.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/WatchListTab/WatchListTab.dart';
 
