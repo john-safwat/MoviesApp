@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
+import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTabViewModel.dart';
 import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
 import '../../../DataBase/FireBase/MyDataBase.dart';
 import '../utils/Dialogs_utils_class.dart';
@@ -15,6 +16,7 @@ class Detailed_Poster extends StatefulWidget {
 }
 
 class _Detailed_PosterState extends State<Detailed_Poster> {
+  HomeTabViewModel viewModel = HomeTabViewModel();
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -121,38 +123,7 @@ class _Detailed_PosterState extends State<Detailed_Poster> {
           ),
           InkWell(
             onTap: (){
-              if(widget.movie.isInWatchList! ){
-                DialogUtils.showMessage(
-                    message: 'Do You Want to Delete ?',
-                    context: context,
-                    posActiontitle: 'ok',
-                    posAction: () async{
-                      widget.movie.isInWatchList = false;
-                      DialogUtils.showDialogeMessage(Message: 'deleting....', context: context);
-                      await MyDataBase.deletemovie(widget.movie.DataBaseID);
-                      DialogUtils.hideDialogMessage(context: context);
-                      setState(() {});
-                    },
-                    nigActiontitle: "Cancle",
-                    nigAction: (){}
-                );
-
-              }else {
-                DialogUtils.showMessage(
-                    message: 'Do You Want to Add ?',
-                    context: context,
-                    posActiontitle: 'ok',
-                    posAction: () async{
-                      widget.movie.isInWatchList = true;
-                      DialogUtils.showDialogeMessage(Message: 'adding....', context: context);
-                      await MyDataBase.insertMovieData(widget.movie);
-                      DialogUtils.hideDialogMessage(context: context);
-                      setState(() {});
-                    },
-                    nigActiontitle: "Cancle",
-                    nigAction: (){}
-                );
-              }
+              viewModel.updateWatchList(widget.movie);
             },
             child: Image.asset( widget.movie.isInWatchList! ?
               "assets/images/selectedbookmark.png" :

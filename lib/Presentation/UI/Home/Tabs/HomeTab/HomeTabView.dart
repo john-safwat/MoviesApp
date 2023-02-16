@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTabViewModel.dart';
+import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTeabNavigator.dart';
+import 'package:movies/Presentation/UI/utils/Dialogs_utils_class.dart';
 import 'package:provider/provider.dart';
 import 'New Releses/New_Releses.dart';
 import 'Popular/Popular_Movies.dart';
@@ -11,14 +13,26 @@ class HomeTab extends StatefulWidget {
   State<HomeTab> createState() => _HomeTabState();
 }
 
-class _HomeTabState extends State<HomeTab> {
+class _HomeTabState extends State<HomeTab> implements HomeTabNavigator {
   HomeTabViewModel viewModel = HomeTabViewModel();
+
   @override
   void initState() {
     super.initState();
+    viewModel.navigator = this;
     viewModel.getPoplarMovies();
     viewModel.getTopRatedMovies();
     viewModel.getNewReleaseMovies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    viewModel.navigator = null;
+    viewModel.errorMessage = null;
+    viewModel.popularMovies = null;
+    viewModel.topRatedMovies = null;
+    viewModel.newReleaseMovies = null;
   }
 
   @override
@@ -33,8 +47,13 @@ class _HomeTabState extends State<HomeTab> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/error.png' , height: 70,),
-                const SizedBox(height: 20,),
+                Image.asset(
+                  'assets/images/error.png',
+                  height: 70,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -44,7 +63,9 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(
                     onPressed: () {
                       value.getPoplarMovies();
@@ -85,14 +106,12 @@ class _HomeTabState extends State<HomeTab> {
                   // new release movies
                   Container(
                       color: MyTheme.Gray,
-                      child: New_Releses(Movies: value.newReleaseMovies!)
-                  ),
+                      child: New_Releses(Movies: value.newReleaseMovies!)),
                   // top rated movies
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       color: MyTheme.Gray,
-                      child: Top_Rated(Movies: value.topRatedMovies!)
-                  ),
+                      child: Top_Rated(Movies: value.topRatedMovies!)),
                 ],
               ),
             );
@@ -101,4 +120,25 @@ class _HomeTabState extends State<HomeTab> {
       ),
     );
   }
+
+  @override
+  void goToDetailsScreen() {
+  }
+
+  @override
+  void hideLoading() {
+    DialogUtils.hideDialogMessage(context: context);
+  }
+
+  @override
+  void showLoading(String message) {
+    DialogUtils.showDialogeMessage(Message: message, context: context);
+  }
+
+  @override
+  void showMessage(String message) {
+    DialogUtils.showMessage(message: message, context: context);
+  }
+
+
 }

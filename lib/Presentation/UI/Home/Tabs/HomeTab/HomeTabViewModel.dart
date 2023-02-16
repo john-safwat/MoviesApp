@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:movies/DataBase/Api/Models/Popular_Movies_Models/Results.dart';
+import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTeabNavigator.dart';
 import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 import '../../../../../DataBase/FireBase/MyDataBase.dart';
 
@@ -10,6 +11,8 @@ class HomeTabViewModel extends ChangeNotifier {
   List<Movie>? popularMovies ;
   List<Movie>? newReleaseMovies ;
   List<Movie>? topRatedMovies ;
+
+  HomeTabNavigator? navigator;
 
   String? errorMessage ;
 
@@ -64,7 +67,6 @@ class HomeTabViewModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-
   // function to call the api to get the top rated movies
   void getTopRatedMovies() async {
     topRatedMovies = null ;
@@ -91,4 +93,43 @@ class HomeTabViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateWatchList(Movie movie){
+    if (movie.isInWatchList!){
+      navigator?.showLoading('delete');
+    }
+    else{
+      navigator?.showLoading('add');
+    }
+    //updatelists();
+    notifyListeners();
+  }
+
+  void updatelists()async{
+    List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
+
+    for(int i = 0 ; i<popularMovies!.length ;i++){
+      for(int j=0;j<watchlist.length ; j++){
+        if(popularMovies![i].id.toString() == watchlist[j].id.toString()){
+          popularMovies![i].isInWatchList = true;
+          popularMovies![i].DataBaseID = watchlist[j].DataBaseID;
+        }
+      }
+    }
+    for (int i =0  ; i< watchlist.length ; i++ ){
+      for (int j = 0 ; j< topRatedMovies!.length ; j++){
+        if (watchlist[i].id.toString() == topRatedMovies![j].id.toString()){
+          topRatedMovies![j].isInWatchList = true ;
+          topRatedMovies![j].DataBaseID = watchlist[i].DataBaseID;
+        }
+      }
+    }
+    for (int i =0  ; i< watchlist.length ; i++ ){
+      for (int j = 0 ; j< newReleaseMovies!.length ; j++){
+        if (watchlist[i].id.toString() == newReleaseMovies![j].id.toString()){
+          newReleaseMovies![j].isInWatchList = true;
+          newReleaseMovies![j].DataBaseID = watchlist[i].DataBaseID;
+        }
+      }
+    }
+  }
 }
