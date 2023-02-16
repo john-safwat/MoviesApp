@@ -12,13 +12,9 @@ class New_Releses extends StatefulWidget {
 }
 
 class _New_RelesesState extends State<New_Releses> {
-  bool isnotCompared = true ;
 
   @override
   Widget build(BuildContext context) {
-    if (isnotCompared){
-      Compare_With_FireStore();
-    }
     var mediaQuery = MediaQuery.of(context).size;
     return Container(
       height: 220,
@@ -60,19 +56,5 @@ class _New_RelesesState extends State<New_Releses> {
         ],
       ),
     );
-  }
-
-  Future<void> Compare_With_FireStore()async{
-    var WatchList = await MyDataBase.getMoviesToCompare();
-    for(int i = 0 ; i<widget.Movies.length ;i++){
-      for(int j=0;j<WatchList.length ; j++){
-        if(widget.Movies[i].id.toString() == WatchList[j].id.toString()){
-          widget.Movies[i].isInWatchList = true;
-          widget.Movies[i].DataBaseID = WatchList[j].DataBaseID;
-        }
-      }
-    }
-    isnotCompared = false;
-    setState(() {});
   }
 }

@@ -7,19 +7,13 @@ import '../../../../../../DataBase/FireBase/MyDataBase.dart';
 class Top_Rated extends StatefulWidget {
   List<Movie> Movies;
   Top_Rated({required this.Movies});
-
   @override
   State<Top_Rated> createState() => _Top_RatedState();
 }
 
 class _Top_RatedState extends State<Top_Rated> {
-  bool isnotCompared = true ;
-
   @override
   Widget build(BuildContext context) {
-    if (isnotCompared){
-      Compare_With_FireStore();
-    }
     var mediaQuery = MediaQuery.of(context).size;
     return Container(
       height: 280,
@@ -51,19 +45,5 @@ class _Top_RatedState extends State<Top_Rated> {
         ],
       ),
     );
-  }
-
-  Future<void> Compare_With_FireStore()async{
-    var WatchList = await MyDataBase.getMoviesToCompare();
-    for(int i = 0 ; i<widget.Movies.length ;i++){
-      for(int j=0;j<WatchList.length ; j++){
-        if(widget.Movies[i].id.toString() == WatchList[j].id.toString()){
-          widget.Movies[i].isInWatchList = true;
-          widget.Movies[i].DataBaseID = WatchList[j].DataBaseID;
-        }
-      }
-    }
-    isnotCompared = false;
-    setState(() {});
   }
 }

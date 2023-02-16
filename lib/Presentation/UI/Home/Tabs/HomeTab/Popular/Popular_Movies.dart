@@ -16,14 +16,10 @@ class Popular_Movies extends StatefulWidget {
 }
 
 class _Popular_MoviesState extends State<Popular_Movies> {
-  bool isnotCompared = true ;
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    if (isnotCompared){
-      Compare_With_FireStore();
-    }
     return ListView.builder(
       itemBuilder: (context, index) => Container(
         width: MediaQuery.of(context).size.width,
@@ -90,17 +86,4 @@ class _Popular_MoviesState extends State<Popular_Movies> {
     );
   }
 
-  Future<void> Compare_With_FireStore()async{
-    var WatchList = await MyDataBase.getMoviesToCompare();
-    for(int i = 0 ; i<widget.Movies.length ;i++){
-      for(int j=0;j<WatchList.length ; j++){
-        if(widget.Movies[i].id.toString() == WatchList[j].id.toString()){
-          widget.Movies[i].isInWatchList = true;
-          widget.Movies[i].DataBaseID = WatchList[j].DataBaseID;
-        }
-      }
-    }
-    isnotCompared = false;
-    setState(() {});
-  }
 }

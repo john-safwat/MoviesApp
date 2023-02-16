@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:movies/DataBase/Api/Models/Popular_Movies_Models/Results.dart';
 import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
@@ -14,18 +13,22 @@ class HomeTabViewModel extends ChangeNotifier {
 
   String? errorMessage ;
 
-  Future<List<Movie>> FireBaseCall() async {
-    var movieslist = await MyDataBase.getMoviesToCompare();
-    return movieslist;
-  }
-
   // function to call the api to get the popular movies
   void getPoplarMovies() async {
     popularMovies = null ;
     errorMessage = null ;
     try {
       var response = await Api.Get_Popular_Movies();
+      List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
       popularMovies = response.results! ;
+      for(int i = 0 ; i<popularMovies!.length ;i++){
+        for(int j=0;j<watchlist.length ; j++){
+          if(popularMovies![i].id.toString() == watchlist[j].id.toString()){
+            popularMovies![i].isInWatchList = true;
+            popularMovies![i].DataBaseID = watchlist[j].DataBaseID;
+          }
+        }
+      }
     } on HttpException catch(e){
       errorMessage =  "Connection To Server Error\n${e.toString()}";
     } on IOException catch(e){
@@ -42,7 +45,16 @@ class HomeTabViewModel extends ChangeNotifier {
     errorMessage = null ;
     try {
       var response = await Api.Get_Popular_Movies();
+      List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
       newReleaseMovies = response.results! ;
+      for (int i =0  ; i< watchlist.length ; i++ ){
+        for (int j = 0 ; j< newReleaseMovies!.length ; j++){
+          if (watchlist[i].id.toString() == newReleaseMovies![j].id.toString()){
+            newReleaseMovies![j].isInWatchList = true;
+            newReleaseMovies![j].DataBaseID = watchlist[i].DataBaseID;
+          }
+        }
+      }
     } on HttpException catch(e){
       errorMessage =  "Connection To Server Error\n${e.toString()}";
     } on IOException catch(e){
@@ -59,7 +71,16 @@ class HomeTabViewModel extends ChangeNotifier {
     errorMessage = null ;
     try {
       var response = await Api.Get_Top_Rated_Movies();
+      List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
       topRatedMovies = response.results! ;
+      for (int i =0  ; i< watchlist.length ; i++ ){
+        for (int j = 0 ; j< topRatedMovies!.length ; j++){
+          if (watchlist[i].id.toString() == topRatedMovies![j].id.toString()){
+            topRatedMovies![j].isInWatchList = true ;
+            topRatedMovies![j].DataBaseID = watchlist[i].DataBaseID;
+          }
+        }
+      }
     } on HttpException catch(e){
       errorMessage =  "Connection To Server Error\n${e.toString()}";
     } on IOException catch(e){
