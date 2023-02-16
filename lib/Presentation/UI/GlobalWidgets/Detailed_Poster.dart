@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
@@ -36,19 +37,27 @@ class _Detailed_PosterState extends State<Detailed_Poster> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: ClipRRect(
-                    borderRadius:const BorderRadius.only(
-                      topLeft: Radius.circular(5),
-                      topRight: Radius.circular(5),
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(0),
+                  child: CachedNetworkImage(
+                    imageUrl: 'https://image.tmdb.org/t/p/w500${widget.movie.posterPath}',
+                    imageBuilder: (context, imageProvider) => ClipRRect(
+                      borderRadius:const BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5),
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                      ),
+                      child: Image.network(
+                        'https://image.tmdb.org/t/p/w500${widget.movie.posterPath}',
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
-                    child: Image.network(
-                      'https://image.tmdb.org/t/p/w500${widget.movie.posterPath}',
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.fitWidth,
-                    ),
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: MyTheme.Gold,)),
+                    errorWidget: (context, url, error) =>const  Icon(Icons.error_outline_rounded , color: Colors.red,),
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height *0.23,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(height: 5,),

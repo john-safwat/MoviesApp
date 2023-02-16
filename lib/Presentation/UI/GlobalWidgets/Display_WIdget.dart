@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 
@@ -22,14 +23,20 @@ class Display_Widget extends StatelessWidget {
           children: [
             Expanded(
               flex: 3,
-              child: movie.backdropPath == null ?
-                Image.asset('assets/images/gallery.png'):
-                ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
-                  fit: BoxFit.cover,
+              child: CachedNetworkImage(
+                imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                imageBuilder: (context, imageProvider) =>ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                placeholder: (context, url) => const Center(child: CircularProgressIndicator(color: MyTheme.Gold,)),
+                errorWidget: (context, url, error) =>const  Icon(Icons.error_outline_rounded , color: Colors.red,),
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height *0.23,
+                fit: BoxFit.cover,
               ),
             ),
             Expanded(
