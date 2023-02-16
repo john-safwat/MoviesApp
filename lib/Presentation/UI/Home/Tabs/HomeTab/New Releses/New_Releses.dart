@@ -6,7 +6,8 @@ import '../../../../../../DataBase/FireBase/MyDataBase.dart';
 
 class New_Releses extends StatefulWidget {
   List<Movie> Movies;
-  New_Releses({required this.Movies});
+  Function buttonAction;
+  New_Releses({required this.Movies , required this.buttonAction});
   @override
   State<New_Releses> createState() => _New_RelesesState();
 }
@@ -41,12 +42,13 @@ class _New_RelesesState extends State<New_Releses> {
               itemBuilder: (context, index) => Container(
                 margin:const EdgeInsets.only(right: 15),
                 child: Poster_Image(
-                    movie: widget.Movies[index],
-                    height: mediaQuery.height ,
-                    top_Right: 5,
-                    top_Left: 5,
-                    bottom_Right: 5,
-                    bottom_Left: 5
+                  buttonAction: widget.buttonAction,
+                  movie: widget.Movies[index],
+                  height: mediaQuery.height ,
+                  top_Right: 5,
+                  top_Left: 5,
+                  bottom_Right: 5,
+                  bottom_Left: 5
                 ),
               ),
               itemCount: widget.Movies.length,

@@ -9,7 +9,8 @@ import '../../../../../../DataBase/FireBase/MyDataBase.dart';
 
 class Popular_Movies extends StatefulWidget {
   List<Movie> Movies;
-  Popular_Movies({required this.Movies});
+  Function buttonAction;
+  Popular_Movies({required this.Movies , required this.buttonAction});
 
   @override
   State<Popular_Movies> createState() => _Popular_MoviesState();
@@ -33,12 +34,13 @@ class _Popular_MoviesState extends State<Popular_Movies> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Poster_Image(
-                      movie: widget.Movies[index],
-                      height: mediaQuery.height * 0.26,
-                      top_Right: 5,
-                      top_Left: 5,
-                      bottom_Right: 5,
-                      bottom_Left: 5),
+                    buttonAction: widget.buttonAction,
+                    movie: widget.Movies[index],
+                    height: mediaQuery.height * 0.26,
+                    top_Right: 5,
+                    top_Left: 5,
+                    bottom_Right: 5,
+                    bottom_Left: 5),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),

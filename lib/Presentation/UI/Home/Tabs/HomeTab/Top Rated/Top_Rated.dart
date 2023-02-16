@@ -6,7 +6,9 @@ import '../../../../../../DataBase/FireBase/MyDataBase.dart';
 
 class Top_Rated extends StatefulWidget {
   List<Movie> Movies;
-  Top_Rated({required this.Movies});
+  Function buttonAction;
+
+  Top_Rated({required this.Movies, required this.buttonAction});
   @override
   State<Top_Rated> createState() => _Top_RatedState();
 }
@@ -37,7 +39,8 @@ class _Top_RatedState extends State<Top_Rated> {
           const SizedBox(height: 10,),
           Expanded(
               child:ListView.builder(
-                itemBuilder: (context, index) => Detailed_Poster(movie: widget.Movies[index]),
+                itemBuilder: (context, index) => Detailed_Poster(movie: widget.Movies[index] ,
+                    buttonAction: widget.buttonAction),
                 itemCount: widget.Movies.length,
                 scrollDirection: Axis.horizontal,
               ),

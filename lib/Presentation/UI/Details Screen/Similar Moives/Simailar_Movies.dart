@@ -30,7 +30,7 @@ class Similar_Movies extends StatelessWidget {
           const SizedBox(height: 10,),
           Expanded(
             child:ListView.builder(
-              itemBuilder: (context, index) => Detailed_Poster(movie: Movies[index]),
+              itemBuilder: (context, index) => Detailed_Poster(movie: Movies[index] , buttonAction: test),
               itemCount: Movies.length,
               scrollDirection: Axis.horizontal,
             ),
@@ -39,4 +39,5 @@ class Similar_Movies extends StatelessWidget {
       ),
     );
   }
+  void test(){}
 }

@@ -17,6 +17,7 @@ class Poster_Image extends StatefulWidget{
   double top_Left ;
   double bottom_Right ;
   double bottom_Left ;
+  Function buttonAction;
 
   Poster_Image({
     required this.movie,
@@ -24,34 +25,19 @@ class Poster_Image extends StatefulWidget{
     required this.top_Right ,
     required this.top_Left ,
     required this.bottom_Right,
-    required this.bottom_Left
+    required this.bottom_Left,
+    required this.buttonAction
   });
 
   @override
   State<Poster_Image> createState() => _Poster_ImageState();
 }
 
-class _Poster_ImageState extends State<Poster_Image>  implements HomeTabNavigator{
-  HomeTabViewModel viewModel = HomeTabViewModel();
+class _Poster_ImageState extends State<Poster_Image>{
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    viewModel.navigator = this;
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    viewModel.navigator = null;
-  }
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => viewModel,
-      child: InkWell(
+    return  InkWell(
         onTap: (){
           Navigator.pushNamed(context, DetailsScreen.routeName , arguments: widget.movie);
         },
@@ -76,7 +62,7 @@ class _Poster_ImageState extends State<Poster_Image>  implements HomeTabNavigato
 
             InkWell(
               onTap: (){
-                viewModel.updateWatchList(widget.movie);
+                widget.buttonAction(widget.movie);
               },
               child:Image.asset( widget.movie.isInWatchList! ?
                 "assets/images/selectedbookmark.png" :
@@ -85,26 +71,7 @@ class _Poster_ImageState extends State<Poster_Image>  implements HomeTabNavigato
             )
           ],
         ),
-      ),
     );
   }
 
-  @override
-  void goToDetailsScreen() {
-  }
-
-  @override
-  void hideLoading() {
-    DialogUtils.hideDialogMessage(context: context);
-  }
-
-  @override
-  void showLoading(String message) {
-    DialogUtils.showDialogeMessage(Message: message, context: context);
-  }
-
-  @override
-  void showMessage(String message) {
-    DialogUtils.showMessage(message: message, context: context);
-  }
 }

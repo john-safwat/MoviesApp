@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/DataBase/Api/Models/Popular_Movies_Models/Results.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTabViewModel.dart';
 import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTeabNavigator.dart';
@@ -29,10 +30,6 @@ class _HomeTabState extends State<HomeTab> implements HomeTabNavigator {
   void dispose() {
     super.dispose();
     viewModel.navigator = null;
-    viewModel.errorMessage = null;
-    viewModel.popularMovies = null;
-    viewModel.topRatedMovies = null;
-    viewModel.newReleaseMovies = null;
   }
 
   @override
@@ -98,7 +95,7 @@ class _HomeTabState extends State<HomeTab> implements HomeTabNavigator {
                   // popular movies
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.33,
-                    child: Popular_Movies(Movies: value.popularMovies!),
+                    child: Popular_Movies(Movies: value.popularMovies! , buttonAction: upDateWatchlistCallBack),
                   ),
                   const SizedBox(
                     height: 20,
@@ -106,12 +103,12 @@ class _HomeTabState extends State<HomeTab> implements HomeTabNavigator {
                   // new release movies
                   Container(
                       color: MyTheme.Gray,
-                      child: New_Releses(Movies: value.newReleaseMovies!)),
+                      child: New_Releses(Movies: value.newReleaseMovies! , buttonAction: upDateWatchlistCallBack)),
                   // top rated movies
                   Container(
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       color: MyTheme.Gray,
-                      child: Top_Rated(Movies: value.topRatedMovies!)),
+                      child: Top_Rated(Movies: value.topRatedMovies! , buttonAction: upDateWatchlistCallBack )),
                 ],
               ),
             );
@@ -122,8 +119,7 @@ class _HomeTabState extends State<HomeTab> implements HomeTabNavigator {
   }
 
   @override
-  void goToDetailsScreen() {
-  }
+  void goToDetailsScreen() {}
 
   @override
   void hideLoading() {
@@ -136,9 +132,23 @@ class _HomeTabState extends State<HomeTab> implements HomeTabNavigator {
   }
 
   @override
-  void showMessage(String message) {
-    DialogUtils.showMessage(message: message, context: context);
+  void showMessage( String message, {
+    String? posActionTitle,
+    String? nigActionTitle,
+    VoidCallback? posAction,
+    VoidCallback? nigAction,
+  }) {
+    DialogUtils.showMessage(
+      message: message,
+      context: context ,
+      posActiontitle: posActionTitle,
+      posAction: posAction,
+      nigAction: nigAction,
+      nigActiontitle: nigActionTitle,
+    );
   }
 
-
+  void upDateWatchlistCallBack(Movie movie){
+    viewModel.updateWatchList(movie);
+  }
 }

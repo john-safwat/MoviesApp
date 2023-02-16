@@ -9,14 +9,14 @@ import '../utils/Dialogs_utils_class.dart';
 
 class Detailed_Poster extends StatefulWidget {
   Movie movie;
-  Detailed_Poster({required this.movie});
+  Function buttonAction;
+  Detailed_Poster({required this.movie , required this.buttonAction});
 
   @override
   State<Detailed_Poster> createState() => _Detailed_PosterState();
 }
 
 class _Detailed_PosterState extends State<Detailed_Poster> {
-  HomeTabViewModel viewModel = HomeTabViewModel();
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -123,7 +123,7 @@ class _Detailed_PosterState extends State<Detailed_Poster> {
           ),
           InkWell(
             onTap: (){
-              viewModel.updateWatchList(widget.movie);
+              widget.buttonAction(widget.movie);
             },
             child: Image.asset( widget.movie.isInWatchList! ?
               "assets/images/selectedbookmark.png" :

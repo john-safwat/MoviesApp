@@ -6,6 +6,7 @@ import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 import '../../../../../DataBase/FireBase/MyDataBase.dart';
 
 class HomeTabViewModel extends ChangeNotifier {
+
   Api_Manager Api = Api_Manager();
 
   List<Movie>? popularMovies ;
@@ -93,25 +94,48 @@ class HomeTabViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateWatchList(Movie movie){
+  void updateWatchList(Movie movie) async{
     if (movie.isInWatchList!){
-      navigator?.showLoading('delete');
+      navigator?.showMessage(
+        "Do You Want To Delete ?",
+        nigActionTitle: "Cancel",
+        posActionTitle: "Ok",
+        nigAction: (){},
+        posAction: ()async{
+          navigator?.showLoading(" Deleting ....");
+          await MyDataBase.deletemovie(movie.DataBaseID);
+          debugPrint("movie deleted sucsessfuly \n\n");
+          List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
+          updatelists(watchlist);
+          navigator?.hideLoading();
+        }
+      );
     }
     else{
-      navigator?.showLoading('add');
+      navigator?.showMessage(
+      "Do You Want To Add ?",
+        nigActionTitle: "Cancel",
+        posActionTitle: "Ok",
+        posAction: ()async{
+          navigator?.showLoading(" Adding ....");
+          await MyDataBase.insertMovieData(movie);
+          debugPrint("movie added sucsessfuly \n\n");
+          List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
+          updatelists(watchlist);
+          navigator?.hideLoading();
+        }
+      );
     }
-    //updatelists();
     notifyListeners();
   }
 
-  void updatelists()async{
-    List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
+  void updatelists( List<Movie> watchlist){
 
-    for(int i = 0 ; i<popularMovies!.length ;i++){
-      for(int j=0;j<watchlist.length ; j++){
-        if(popularMovies![i].id.toString() == watchlist[j].id.toString()){
-          popularMovies![i].isInWatchList = true;
-          popularMovies![i].DataBaseID = watchlist[j].DataBaseID;
+    for (int i =0  ; i< watchlist.length ; i++ ){
+      for (int j = 0 ; j< popularMovies!.length ; j++){
+        if (watchlist[i].id.toString() == popularMovies![j].id.toString()){
+          popularMovies![j].isInWatchList = true;
+          popularMovies![j].DataBaseID = watchlist[i].DataBaseID;
         }
       }
     }
