@@ -2,11 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/Theme/Theme.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTabViewModel.dart';
 import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
-import '../../../DataBase/FireBase/MyDataBase.dart';
-import '../utils/Dialogs_utils_class.dart';
-
 class Detailed_Poster extends StatefulWidget {
   Movie movie;
   Function buttonAction;

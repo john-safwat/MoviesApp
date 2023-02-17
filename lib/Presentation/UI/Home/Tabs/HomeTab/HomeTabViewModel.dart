@@ -6,15 +6,11 @@ import '../../../../../DataBase/Api/ApiManager/Api_Manager.dart';
 import '../../../../../DataBase/FireBase/MyDataBase.dart';
 
 class HomeTabViewModel extends ChangeNotifier {
-
+  HomeTabNavigator? navigator;
   Api_Manager Api = Api_Manager();
-
   List<Movie>? popularMovies ;
   List<Movie>? newReleaseMovies ;
   List<Movie>? topRatedMovies ;
-
-  HomeTabNavigator? navigator;
-
   String? errorMessage ;
 
   // function to call the api to get the popular movies
@@ -42,7 +38,6 @@ class HomeTabViewModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-
   // function to call the api to get the new releases movies
   void getNewReleaseMovies() async {
     newReleaseMovies = null ;
@@ -94,6 +89,7 @@ class HomeTabViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  // function to update the watchlist
   void updateWatchList(Movie movie) async{
     if (movie.isInWatchList!){
       navigator?.showMessage(
@@ -104,10 +100,10 @@ class HomeTabViewModel extends ChangeNotifier {
         posAction: ()async{
           navigator?.showLoading(" Deleting ....");
           await MyDataBase.deletemovie(movie.DataBaseID);
-          debugPrint("movie deleted sucsessfuly \n\n");
-          List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
-          updatelists(watchlist);
+          // update the lists with the deleted movie
+          deleteMovieFromWatchlist(movie);
           navigator?.hideLoading();
+          notifyListeners();
         }
       );
     }
@@ -119,41 +115,54 @@ class HomeTabViewModel extends ChangeNotifier {
         posAction: ()async{
           navigator?.showLoading(" Adding ....");
           await MyDataBase.insertMovieData(movie);
-          debugPrint("movie added sucsessfuly \n\n");
-          List<Movie> watchlist =  await MyDataBase.getMoviesToCompare();
-          updatelists(watchlist);
+          addMovieToWatchlist(movie);
           navigator?.hideLoading();
+          notifyListeners();
         }
       );
     }
-    notifyListeners();
   }
-
-  void updatelists( List<Movie> watchlist){
-
-    for (int i =0  ; i< watchlist.length ; i++ ){
-      for (int j = 0 ; j< popularMovies!.length ; j++){
-        if (watchlist[i].id.toString() == popularMovies![j].id.toString()){
-          popularMovies![j].isInWatchList = true;
-          popularMovies![j].DataBaseID = watchlist[i].DataBaseID;
-        }
+  // compare the deleted movie and update the list
+  void deleteMovieFromWatchlist(Movie movie) {
+    for (int i =0 ; i<popularMovies!.length ; i++){
+      if(movie.id.toString() == popularMovies![i].id.toString()){
+        popularMovies![i].isInWatchList = false ;
+        popularMovies![i].DataBaseID = '' ;
       }
     }
-    for (int i =0  ; i< watchlist.length ; i++ ){
-      for (int j = 0 ; j< topRatedMovies!.length ; j++){
-        if (watchlist[i].id.toString() == topRatedMovies![j].id.toString()){
-          topRatedMovies![j].isInWatchList = true ;
-          topRatedMovies![j].DataBaseID = watchlist[i].DataBaseID;
-        }
+    for (int i =0 ; i<newReleaseMovies!.length ; i++){
+      if(movie.id.toString() == newReleaseMovies![i].id.toString()){
+        newReleaseMovies![i].isInWatchList = false ;
+        newReleaseMovies![i].DataBaseID = '' ;
       }
     }
-    for (int i =0  ; i< watchlist.length ; i++ ){
-      for (int j = 0 ; j< newReleaseMovies!.length ; j++){
-        if (watchlist[i].id.toString() == newReleaseMovies![j].id.toString()){
-          newReleaseMovies![j].isInWatchList = true;
-          newReleaseMovies![j].DataBaseID = watchlist[i].DataBaseID;
-        }
+    for (int i =0 ; i<topRatedMovies!.length ; i++){
+      if(movie.id.toString() == topRatedMovies![i].id.toString()){
+        topRatedMovies![i].isInWatchList = false ;
+        topRatedMovies![i].DataBaseID = '' ;
       }
     }
   }
+  // compare the added movie and update the list
+  void addMovieToWatchlist(Movie movie) {
+    for (int i =0 ; i<popularMovies!.length ; i++){
+      if(movie.id.toString() == popularMovies![i].id.toString()){
+        popularMovies![i].isInWatchList = true ;
+        popularMovies![i].DataBaseID = movie.DataBaseID ;
+      }
+    }
+    for (int i =0 ; i<newReleaseMovies!.length ; i++){
+      if(movie.id.toString() == newReleaseMovies![i].id.toString()){
+        newReleaseMovies![i].isInWatchList = true ;
+        newReleaseMovies![i].DataBaseID = movie.DataBaseID ;
+      }
+    }
+    for (int i =0 ; i<topRatedMovies!.length ; i++){
+      if(movie.id.toString() == topRatedMovies![i].id.toString()){
+        topRatedMovies![i].isInWatchList = true ;
+        topRatedMovies![i].DataBaseID = movie.DataBaseID ;
+      }
+    }
+  }
+
 }

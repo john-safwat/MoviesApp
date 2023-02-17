@@ -1,13 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Presentation/UI/Details%20Screen/Details_Screen.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTabViewModel.dart';
-import 'package:movies/Presentation/UI/Home/Tabs/HomeTab/HomeTeabNavigator.dart';
-import 'package:movies/Presentation/UI/utils/Dialogs_utils_class.dart';
-import 'package:provider/provider.dart';
-
 import '../../../DataBase/Api/Models/Popular_Movies_Models/Results.dart';
-import '../../../DataBase/FireBase/MyDataBase.dart';
 import '../../Theme/Theme.dart';
 
 class Poster_Image extends StatefulWidget{
@@ -37,7 +31,7 @@ class _Poster_ImageState extends State<Poster_Image>{
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
+    return InkWell(
         onTap: (){
           Navigator.pushNamed(context, DetailsScreen.routeName , arguments: widget.movie);
         },
